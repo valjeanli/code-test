@@ -1,0 +1,137 @@
+======================================================================
+ACC Algorithm Output  |  arXiv:2103.14506
+Tang, Xu, Zhou — Asset Selection via Correlation Blockmodel Clustering
+======================================================================
+
+PARAMETERS
+  Lookback window : 504 trading days
+  Cluster range  : [10, 35] (Rule 3)
+  ε grid size    : 40
+
+----------------------------------------------------------------------
+SINGLE-SHOT ACC RESULTS
+----------------------------------------------------------------------
+Window           : 2024-05-02 → 2026-05-06
+Assets analyzed  : 501
+Periods (days)   : 504
+Clusters found   : 32
+Intra-cluster ρ  : 0.2397
+Best epsilon     : 0.585819
+
+SELECTED STOCKS (Theorem 2: lowest variance per cluster):
+  Cluster  0: EVRG    var=0.000100  size=466
+  Cluster  1: COR     var=0.000257  size=3
+  Cluster  2: CME     var=0.000132  size=2
+  Cluster  3: DG      var=0.000702  size=2
+  Cluster  4: AKAM    var=0.000753  size=1
+  Cluster  5: CASY    var=0.000333  size=1
+  Cluster  6: DXCM    var=0.000967  size=1
+  Cluster  7: EA      var=0.000258  size=1
+  Cluster  8: EBAY    var=0.000450  size=1
+  Cluster  9: EW      var=0.000442  size=1
+  Cluster 10: FSLR    var=0.001408  size=1
+  Cluster 11: GILD    var=0.000281  size=1
+  Cluster 12: INCY    var=0.000446  size=1
+  Cluster 13: KR      var=0.000249  size=1
+  Cluster 14: KVUE    var=0.000370  size=1
+  Cluster 15: LLY     var=0.000573  size=1
+  Cluster 16: MRNA    var=0.001795  size=1
+  Cluster 17: MSI     var=0.000182  size=1
+  Cluster 18: NFLX    var=0.000429  size=1
+  Cluster 19: PODD    var=0.000607  size=1
+  Cluster 20: PSKY    var=0.001180  size=1
+  Cluster 21: RMD     var=0.000323  size=1
+  Cluster 22: SATS    var=0.003119  size=1
+  Cluster 23: TKO     var=0.000377  size=1
+  Cluster 24: TTD     var=0.001559  size=1
+  Cluster 25: TTWO    var=0.000339  size=1
+  Cluster 26: UBER    var=0.000592  size=1
+  Cluster 27: ULTA    var=0.000531  size=1
+  Cluster 28: VEEV    var=0.000504  size=1
+  Cluster 29: VRTX    var=0.000385  size=1
+  Cluster 30: WBD     var=0.001109  size=1
+  Cluster 31: WST     var=0.000926  size=1
+
+CLUSTER COMPOSITION:
+  Cluster  0 (466 stocks): A, AAPL, ABBV, ABNB, ABT, ACGL, ACN, ADBE, ADI, ADM, ADP, ADSK, AEE, AEP, AES, AFL, AIG, AIZ, AJG, ALB...
+  Cluster  1 (  3 stocks): CAH, COR, MCK
+  Cluster  2 (  2 stocks): CBOE, CME
+  Cluster  3 (  2 stocks): DG, DLTR
+  Cluster  4 (  1 stocks): AKAM
+  Cluster  5 (  1 stocks): CASY
+  Cluster  6 (  1 stocks): DXCM
+  Cluster  7 (  1 stocks): EA
+  Cluster  8 (  1 stocks): EBAY
+  Cluster  9 (  1 stocks): EW
+  Cluster 10 (  1 stocks): FSLR
+  Cluster 11 (  1 stocks): GILD
+  Cluster 12 (  1 stocks): INCY
+  Cluster 13 (  1 stocks): KR
+  Cluster 14 (  1 stocks): KVUE
+  Cluster 15 (  1 stocks): LLY
+  Cluster 16 (  1 stocks): MRNA
+  Cluster 17 (  1 stocks): MSI
+  Cluster 18 (  1 stocks): NFLX
+  Cluster 19 (  1 stocks): PODD
+  Cluster 20 (  1 stocks): PSKY
+  Cluster 21 (  1 stocks): RMD
+  Cluster 22 (  1 stocks): SATS
+  Cluster 23 (  1 stocks): TKO
+  Cluster 24 (  1 stocks): TTD
+  Cluster 25 (  1 stocks): TTWO
+  Cluster 26 (  1 stocks): UBER
+  Cluster 27 (  1 stocks): ULTA
+  Cluster 28 (  1 stocks): VEEV
+  Cluster 29 (  1 stocks): VRTX
+  Cluster 30 (  1 stocks): WBD
+  Cluster 31 (  1 stocks): WST
+
+PORTFOLIO METRICS (equal-weight, on selected stocks):
+  EVRG    ann_ret=+26.54%  ann_vol=15.87%  Sharpe=+1.67
+  COR     ann_ret=+9.05%  ann_vol=25.49%  Sharpe=+0.36
+  CME     ann_ret=+22.13%  ann_vol=18.23%  Sharpe=+1.21
+  DG      ann_ret=+3.40%  ann_vol=42.10%  Sharpe=+0.08
+  AKAM    ann_ret=+19.29%  ann_vol=43.60%  Sharpe=+0.44
+  CASY    ann_ret=+54.11%  ann_vol=28.99%  Sharpe=+1.87
+  DXCM    ann_ret=-22.90%  ann_vol=49.41%  Sharpe=-0.46
+  EA      ann_ret=+26.21%  ann_vol=25.50%  Sharpe=+1.03
+  EBAY    ann_ret=+44.85%  ann_vol=33.71%  Sharpe=+1.33
+  EW      ann_ret=+5.56%  ann_vol=33.40%  Sharpe=+0.17
+  FSLR    ann_ret=+27.80%  ann_vol=59.63%  Sharpe=+0.47
+  GILD    ann_ret=+43.33%  ann_vol=26.66%  Sharpe=+1.63
+  INCY    ann_ret=+37.35%  ann_vol=33.56%  Sharpe=+1.11
+  KR      ann_ret=+14.54%  ann_vol=25.06%  Sharpe=+0.58
+  KVUE    ann_ret=+5.49%  ann_vol=30.58%  Sharpe=+0.18
+  LLY     ann_ret=+19.91%  ann_vol=38.03%  Sharpe=+0.52
+  MRNA    ann_ret=-18.63%  ann_vol=67.33%  Sharpe=-0.28
+  MSI     ann_ret=+16.10%  ann_vol=21.46%  Sharpe=+0.75
+  NFLX    ann_ret=+28.89%  ann_vol=32.92%  Sharpe=+0.88
+  PODD    ann_ret=+1.66%  ann_vol=39.16%  Sharpe=+0.04
+  PSKY    ann_ret=+9.86%  ann_vol=54.58%  Sharpe=+0.18
+  RMD     ann_ret=+3.72%  ann_vol=28.55%  Sharpe=+0.13
+  SATS    ann_ret=+136.96%  ann_vol=88.75%  Sharpe=+1.54
+  TKO     ann_ret=+40.00%  ann_vol=30.84%  Sharpe=+1.30
+  TTD     ann_ret=-41.79%  ann_vol=62.73%  Sharpe=-0.67
+  TTWO    ann_ret=+26.34%  ann_vol=29.25%  Sharpe=+0.90
+  UBER    ann_ret=+15.18%  ann_vol=38.65%  Sharpe=+0.39
+  ULTA    ann_ret=+20.90%  ann_vol=36.62%  Sharpe=+0.57
+  VEEV    ann_ret=-2.37%  ann_vol=35.69%  Sharpe=-0.07
+  VRTX    ann_ret=+8.13%  ann_vol=31.20%  Sharpe=+0.26
+  WBD     ann_ret=+77.16%  ann_vol=52.92%  Sharpe=+1.46
+  WST     ann_ret=+5.54%  ann_vol=48.36%  Sharpe=+0.11
+
+  Portfolio avg Sharpe ratio : 0.615
+
+----------------------------------------------------------------------
+WALK-FORWARD ACC RESULTS
+----------------------------------------------------------------------
+  2021-05-11 → 2023-05-10: K=33, ε=0.4832, intra_corr=0.3864
+    Selected: JNJ, EA, PM, NRG, VZ, ABBV, BALL, BIIB, BMY, CASY, CBOE, DPZ, DVA, FSLR, GEN, IBM, INCY, KR, LLY, MRK, MRNA, NEM, PFE, REGN, SATS, SMCI, SW, TAP, TKO, TMUS, TSN, VRTX, VTRS
+  2021-11-08 → 2023-11-08: K=26, ε=0.5140, intra_corr=0.3752
+    Selected: JNJ, AMGN, DG, EA, VZ, ABBV, BIIB, CASY, DPZ, DVA, FSLR, GEN, INCY, KR, LLY, MRNA, NEM, PFE, REGN, SATS, SMCI, SW, TKO, TMUS, TSN, VRTX
+  2022-05-10 → 2024-05-10: K=19, ε=0.5580, intra_corr=0.3523
+    Selected: KO, COR, AMGN, VZ, BIIB, CBOE, DVA, FSLR, GEN, GL, INCY, KR, LLY, MRNA, NEM, SATS, SW, TKO, TSN
+  2022-11-08 → 2024-11-08: K=20, ε=0.6283, intra_corr=0.2563
+    Selected: KO, UNH, DLTR, AKAM, AXON, CASY, CBOE, DPZ, INCY, KR, LLY, MRNA, REGN, RMD, SATS, SW, TKO, TMUS, TSN, VRTX
+
+Total runtime: 26.5s

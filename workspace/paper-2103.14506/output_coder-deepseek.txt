@@ -1,0 +1,196 @@
+======================================================================
+ACC Algorithm — Asset Selection via Correlation Blockmodel Clustering
+Tang, Xu, Zhou (2021) — arXiv:2103.14506
+======================================================================
+
+Loading data from: /opt/data/kanban/workspaces/t_dc995cda/sp500_data/sp500_ohlcv_5yr.parquet
+  Raw data: 625,502 rows × 7 columns
+  Symbols: 503
+  Date range: 2021-05-10 00:00:00-04:00 to 2026-05-06 00:00:00-04:00
+
+Preparing returns matrix...
+  Returns matrix: 1197 days × 495 assets
+  Date range: 2021-07-30 00:00:00-04:00 to 2026-05-06 00:00:00-04:00
+
+Running ACC algorithm on last 500 trading days...
+  Window: 2024-05-08 00:00:00-04:00 to 2026-05-06 00:00:00-04:00
+  Assets: 495
+
+──────────────────────────────────────────────────────────────────────
+ACC RESULTS
+──────────────────────────────────────────────────────────────────────
+  Number of assets (d):      495
+  Number of observations (n): 500
+  Estimated α:                0.7879
+  Estimated L:                7.3272
+  Search range for ε:         [0.179482, 2.000000]
+  Selected ε:                 0.455318
+  Number of clusters (K):     24
+  Intra-cluster corr (ρ̂_ave): 0.4280
+
+──────────────────────────────────────────────────────────────────────
+CLUSTER DETAILS
+──────────────────────────────────────────────────────────────────────
+  Cluster  3: 115 assets | avg intra-ρ = 0.4857 [0.1474, 0.8994] | lowest vol: BRK-B (17.2%)
+         ADI, AIZ, AME, AMP, APO, ARES, AXP, BAC, BEN, BK, ... (+105 more)
+  Cluster 12:  46 assets | avg intra-ρ = 0.3109 [0.0206, 0.7786] | lowest vol: GD (21.5%)
+         A, AAPL, ABBV, ACN, ALGN, AMGN, APTV, BAX, BBY, BDX, ... (+36 more)
+  Cluster 14:  42 assets | avg intra-ρ = 0.3269 [0.0545, 0.7379] | lowest vol: MSFT (24.6%)
+         ABNB, ADBE, ADSK, AKAM, APP, AXON, BKNG, COIN, CPRT, CRM, ... (+32 more)
+  Cluster  5:  41 assets | avg intra-ρ = 0.4631 [0.1683, 0.9040] | lowest vol: TT (27.6%)
+         AMAT, AMD, AMZN, ANET, APH, AVGO, CDNS, CIEN, COHR, DELL, ... (+31 more)
+  Cluster  9:  36 assets | avg intra-ρ = 0.4724 [0.1329, 0.8560] | lowest vol: EVRG (15.9%)
+         AEE, AEP, AMT, AWK, CCI, CL, CMS, CNP, D, DGX, ... (+26 more)
+  Cluster 16:  32 assets | avg intra-ρ = 0.1712 [-0.0189, 0.4907] | lowest vol: WMT (23.4%)
+         AES, ALB, BA, BSX, CHRW, CSCO, DECK, DG, DLTR, DXCM, ... (+22 more)
+  Cluster 15:  31 assets | avg intra-ρ = 0.1697 [-0.0368, 0.6272] | lowest vol: MSI (21.1%)
+         ABT, APD, CI, CMG, CNC, CTVA, CVS, DE, DPZ, DRI, ... (+21 more)
+  Cluster  7:  28 assets | avg intra-ρ = 0.3858 [0.1459, 0.7666] | lowest vol: LIN (17.5%)
+         ACGL, ADP, AIG, AJG, ALL, AON, BR, BRO, CB, COST, ... (+18 more)
+  Cluster  4:  27 assets | avg intra-ρ = 0.4712 [0.1683, 0.9186] | lowest vol: ATO (16.2%)
+         AFL, ARE, ATO, AVB, CPT, CTAS, DOC, ECL, EQR, ESS, ... (+17 more)
+  Cluster 11:  25 assets | avg intra-ρ = 0.3734 [0.1903, 0.7738] | lowest vol: PG (18.4%)
+         BALL, BF-B, CAG, CHD, CLX, CPB, GIS, HRL, HSY, KDP, ... (+15 more)
+  Cluster  8:  19 assets | avg intra-ρ = 0.5863 [0.2548, 0.8936] | lowest vol: CVX (23.4%)
+         APA, BKR, CF, COP, CVX, DOW, DVN, EOG, FANG, HAL, ... (+9 more)
+  Cluster  6:  16 assets | avg intra-ρ = 0.5258 [0.2918, 0.9113] | lowest vol: AVY (23.0%)
+         ALLE, AMCR, AOS, AVY, DHI, GPC, HAS, HD, LEN, LII, ... (+6 more)
+  Cluster 17:   7 assets | avg intra-ρ = 0.2034 [0.0564, 0.5325] | lowest vol: CME (18.3%)
+         CAH, CBOE, CME, KR, NOC, PM, TMUS
+  Cluster 10:   6 assets | avg intra-ρ = 0.3542 [0.2195, 0.7758] | lowest vol: TJX (17.9%)
+         AZO, CASY, MCD, ORLY, TJX, TSCO
+  Cluster  2:   4 assets | avg intra-ρ = 0.6759 [0.5141, 0.9862] | lowest vol: NWSA (23.6%)
+         FOX, FOXA, NWS, NWSA
+  Cluster 13:   4 assets | avg intra-ρ = 0.6378 [0.4979, 0.8509] | lowest vol: KMI (22.8%)
+         EQT, EXE, KMI, WMB
+  Cluster 18:   3 assets | avg intra-ρ = 0.4945 [0.3662, 0.6987] | lowest vol: ADM (26.8%)
+         ADM, BG, MOS
+  Cluster 21:   3 assets | avg intra-ρ = 0.3851 [0.2281, 0.6905] | lowest vol: LHX (23.1%)
+         COR, LHX, MCK
+  Cluster  1:   2 assets | avg intra-ρ = 0.9995 [0.9995, 0.9995] | lowest vol: GOOG (29.7%)
+         GOOG, GOOGL
+  Cluster 19:   2 assets | avg intra-ρ = 0.6727 [0.6727, 0.6727] | lowest vol: CMCSA (28.0%)
+         CHTR, CMCSA
+  Cluster 20:   2 assets | avg intra-ρ = 0.7265 [0.7265, 0.7265] | lowest vol: HCA (27.7%)
+         HCA, UHS
+  Cluster 22:   2 assets | avg intra-ρ = 0.6810 [0.6810, 0.6810] | lowest vol: DLR (25.6%)
+         DLR, EQIX
+  Cluster 23:   1 assets | avg intra-ρ = 1.0000 [1.0000, 1.0000] | lowest vol: LH (23.7%)
+         LH
+  Cluster 24:   1 assets | avg intra-ρ = 1.0000 [1.0000, 1.0000] | lowest vol: RTX (24.8%)
+         RTX
+
+──────────────────────────────────────────────────────────────────────
+PORTFOLIO SELECTION (lowest volatility per cluster, Theorem 2)
+──────────────────────────────────────────────────────────────────────
+  Selected 24 stocks:
+    GOOG    annualized vol = 29.7%
+    NWSA    annualized vol = 23.6%
+    BRK-B   annualized vol = 17.2%
+    ATO     annualized vol = 16.2%
+    TT      annualized vol = 27.6%
+    AVY     annualized vol = 23.0%
+    LIN     annualized vol = 17.5%
+    CVX     annualized vol = 23.4%
+    EVRG    annualized vol = 15.9%
+    TJX     annualized vol = 17.9%
+    PG      annualized vol = 18.4%
+    GD      annualized vol = 21.5%
+    KMI     annualized vol = 22.8%
+    MSFT    annualized vol = 24.6%
+    MSI     annualized vol = 21.1%
+    WMT     annualized vol = 23.4%
+    CME     annualized vol = 18.3%
+    ADM     annualized vol = 26.8%
+    CMCSA   annualized vol = 28.0%
+    HCA     annualized vol = 27.7%
+    LHX     annualized vol = 23.1%
+    DLR     annualized vol = 25.6%
+    LH      annualized vol = 23.7%
+    RTX     annualized vol = 24.8%
+
+  Minimum-Variance Weights:
+    GOOG    0.0415 (4.2%)
+    NWSA    0.0399 (4.0%)
+    BRK-B   0.0423 (4.2%)
+    ATO     0.0439 (4.4%)
+    TT      0.0378 (3.8%)
+    AVY     0.0395 (3.9%)
+    LIN     0.0411 (4.1%)
+    CVX     0.0426 (4.3%)
+    EVRG    0.0445 (4.5%)
+    TJX     0.0429 (4.3%)
+    PG      0.0448 (4.5%)
+    GD      0.0395 (3.9%)
+    KMI     0.0411 (4.1%)
+    MSFT    0.0442 (4.4%)
+    MSI     0.0411 (4.1%)
+    WMT     0.0408 (4.1%)
+    CME     0.0484 (4.8%)
+    ADM     0.0417 (4.2%)
+    CMCSA   0.0401 (4.0%)
+    HCA     0.0417 (4.2%)
+    LHX     0.0399 (4.0%)
+    DLR     0.0406 (4.1%)
+    LH      0.0401 (4.0%)
+    RTX     0.0401 (4.0%)
+
+  Risk Parity (Inverse-Vol) Weights:
+    GOOG    0.0307 (3.1%)
+    NWSA    0.0386 (3.9%)
+    BRK-B   0.0528 (5.3%)
+    ATO     0.0562 (5.6%)
+    TT      0.0330 (3.3%)
+    AVY     0.0396 (4.0%)
+    LIN     0.0520 (5.2%)
+    CVX     0.0389 (3.9%)
+    EVRG    0.0574 (5.7%)
+    TJX     0.0508 (5.1%)
+    PG      0.0494 (4.9%)
+    GD      0.0423 (4.2%)
+    KMI     0.0400 (4.0%)
+    MSFT    0.0370 (3.7%)
+    MSI     0.0431 (4.3%)
+    WMT     0.0388 (3.9%)
+    CME     0.0498 (5.0%)
+    ADM     0.0340 (3.4%)
+    CMCSA   0.0325 (3.3%)
+    HCA     0.0328 (3.3%)
+    LHX     0.0395 (3.9%)
+    DLR     0.0356 (3.6%)
+    LH      0.0385 (3.8%)
+    RTX     0.0368 (3.7%)
+
+  Minimum-Variance Portfolio (annualized):
+    Return:  17.88%
+    Vol:     11.06%
+    Sharpe:  1.62
+
+──────────────────────────────────────────────────────────────────────
+GRID SEARCH SUMMARY
+──────────────────────────────────────────────────────────────────────
+  ε range: [0.179482, 2.000000]
+  100 grid points
+
+             ε  Clusters      ρ̂_ave  Status
+  ────────────  ────────  ──────────  ────────────────────
+      0.179482       253         N/A  rejected (out of range)
+      0.289816        84         N/A  rejected (out of range)
+      0.400150        32         N/A  rejected (out of range)
+      0.510485        18    0.373002  valid
+      0.620819         8         N/A  rejected (out of range)
+      0.731154         5         N/A  rejected (out of range)
+      0.841488         2         N/A  rejected (out of range)
+      0.951823         2         N/A  rejected (out of range)
+      1.062157         2         N/A  rejected (out of range)
+      1.172492         2         N/A  rejected (out of range)
+      1.282826         1         N/A  rejected (out of range)
+      1.393161         1         N/A  rejected (out of range)
+      1.503495         1         N/A  rejected (out of range)
+      1.613829         1         N/A  rejected (out of range)
+      1.724164         1         N/A  rejected (out of range)
+      1.834498         1         N/A  rejected (out of range)
+      1.944833         1         N/A  rejected (out of range)
+
+======================================================================
+Done.

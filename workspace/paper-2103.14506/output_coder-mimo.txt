@@ -1,0 +1,163 @@
+======================================================================
+ACC Algorithm Implementation - Paper 2103.14506
+Asset Selection via Correlation Blockmodel Clustering
+Tang, Xu, Zhou (2021)
+======================================================================
+
+[1] LOADING DATA
+----------------------------------------
+  Date range: 2021-05-11 00:00:00 to 2026-05-06 00:00:00
+  Trading days: 1253
+  Stocks: 493
+
+[2] ACC ALGORITHM - FULL DATASET ANALYSIS
+----------------------------------------
+
+  Selected epsilon: 0.4305
+  Number of clusters: 21
+  Tail index (alpha): 2.899
+
+  Grid search results:
+     Epsilon   Clusters   Max Size   Min Size
+      0.0703        450          7          1
+      0.0980        379          8          1
+      0.1257        305         13          1
+      0.1534        215         17          1
+      0.1812        151         21          1
+      0.2089        116         41          1
+      0.2366         86         85          1
+      0.2643         64        136          1
+      0.2920         58        170          1
+      0.3197         46        165          1
+      0.3474         40        170          1
+      0.3751         33        185          1
+      0.4028         28        119          1
+      0.4305         21        171          1
+      0.4582         17        224          1
+      0.4859         12        271          1
+      0.5136          9        320          2
+      0.5413          8        354          1
+      0.5690          8        381          1
+      0.5967          7        412          2
+
+  Cluster details:
+  Cluster 1 (size=171, avg_corr=0.4165): ['A', 'AAPL', 'ABT', 'ACN', 'ADBE', 'ADI', 'ADP', 'ADSK', 'ALB', 'ALGN', 'ALLE', 'AMCR', 'AME', 'AMP', 'AMZN', 'AOS', 'APD', 'APH', 'APO', 'APTV', 'ARE', 'ARES', 'AVY', 'AXP', 'BAX', 'BBY', 'BDX', 'BEN', 'BK', 'BLDR', 'BLK', 'BR', 'BX', 'BXP', 'C', 'CARR', 'CBRE', 'CDNS', 'CDW', 'CMI', 'COO', 'CPAY', 'CPRT', 'CRH', 'CRL', 'CRM', 'CSGP', 'CSX', 'CTAS', 'CTSH', 'DD', 'DHR', 'DIS', 'DOV', 'ECL', 'EFX', 'EL', 'EMR', 'EPAM', 'EQIX', 'ETN', 'EXPD', 'FAST', 'FCX', 'FFIV', 'FTV', 'GM', 'GNRC', 'GPN', 'GRMN', 'GS', 'HAS', 'HD', 'HON', 'HSIC', 'HST', 'HUBB', 'ICE', 'IDXX', 'IEX', 'IFF', 'INTU', 'INVH', 'IQV', 'IR', 'IRM', 'ISRG', 'IT', 'ITW', 'IVZ', 'J', 'JBHT', 'JCI', 'KEYS', 'KKR', 'LH', 'LII', 'LIN', 'LOW', 'LULU', 'MAS', 'MCHP', 'MCO', 'MDT', 'MGM', 'MMM', 'MPWR', 'MS', 'MSCI', 'MSFT', 'MTD', 'NDAQ', 'NDSN', 'NKE', 'NOW', 'NSC', 'NTAP', 'NTRS', 'NVR', 'NXPI', 'ODFL', 'ON', 'OTIS', 'PAYX', 'PFG', 'PH', 'PLD', 'PNR', 'POOL', 'PPG', 'PTC', 'QCOM', 'RJF', 'RL', 'RMD', 'ROK', 'ROP', 'RVTY', 'SHW', 'SNA', 'SNPS', 'SPG', 'SPGI', 'STE', 'SWK', 'SWKS', 'SYK', 'TDG', 'TDY', 'TECH', 'TEL', 'TER', 'TMO', 'TRMB', 'TROW', 'TT', 'TXN', 'TXT', 'TYL', 'UPS', 'URI', 'VICI', 'WAB', 'WAT', 'WSM', 'WST', 'WY', 'XYL', 'XYZ', 'ZBRA', 'ZTS']
+  Cluster 2 (size=112, avg_corr=0.2015): ['ABBV', 'AES', 'AIZ', 'AKAM', 'ALL', 'AMGN', 'AWK', 'BA', 'BALL', 'BF-B', 'BIIB', 'BMY', 'BSX', 'CAG', 'CAH', 'CASY', 'CBOE', 'CHD', 'CHRW', 'CI', 'CINF', 'CL', 'CLX', 'CME', 'CMG', 'CNC', 'COST', 'CPB', 'CTVA', 'CVS', 'DG', 'DGX', 'DLTR', 'DPZ', 'DRI', 'DVA', 'DXCM', 'EA', 'EBAY', 'ERIE', 'EW', 'FDX', 'FICO', 'FIS', 'FSLR', 'GEN', 'GILD', 'GL', 'GPC', 'HII', 'HRL', 'HSY', 'HUM', 'IBM', 'INCY', 'INTC', 'JKHY', 'JNJ', 'KDP', 'KHC', 'KMB', 'KO', 'KR', 'LDOS', 'LLY', 'MCD', 'MDLZ', 'MKC', 'MNST', 'MO', 'MRK', 'MRNA', 'MSI', 'NEE', 'NEM', 'NFLX', 'OMC', 'PCG', 'PEP', 'PFE', 'PG', 'PGR', 'PM', 'PODD', 'REGN', 'ROL', 'RTX', 'SATS', 'SBUX', 'SJM', 'SRE', 'STZ', 'SW', 'SYY', 'TAP', 'TGT', 'TKO', 'TMUS', 'TSCO', 'TSN', 'TTWO', 'ULTA', 'UNH', 'VRSK', 'VRSN', 'VRTX', 'VTRS', 'WMT', 'WRB', 'WTW', 'YUM', 'ZBH']
+  Cluster 3 (size=74, avg_corr=0.3346): ['ABNB', 'AMD', 'ANET', 'APP', 'AVGO', 'AXON', 'BKNG', 'CAT', 'CCL', 'CHTR', 'CIEN', 'COF', 'COHR', 'COIN', 'CRWD', 'CSCO', 'CVNA', 'DAL', 'DASH', 'DDOG', 'DE', 'DECK', 'DELL', 'EXPE', 'F', 'FDS', 'FTNT', 'GDDY', 'GE', 'GLW', 'HLT', 'HPE', 'HPQ', 'HWM', 'IBKR', 'IP', 'JBL', 'JPM', 'LITE', 'LUV', 'LVS', 'LYV', 'MAR', 'META', 'MU', 'NCLH', 'NVDA', 'ORCL', 'PANW', 'PCAR', 'PKG', 'PLTR', 'PSKY', 'PWR', 'PYPL', 'RCL', 'ROST', 'SCHW', 'SMCI', 'SYF', 'TJX', 'TPL', 'TPR', 'TSLA', 'TTD', 'UAL', 'UBER', 'V', 'VEEV', 'VRT', 'WBD', 'WDAY', 'WFC', 'WYNN']
+  Cluster 4 (size=16, avg_corr=0.5631): ['ACGL', 'AFL', 'AIG', 'AJG', 'AON', 'BRK-B', 'BRO', 'CB', 'EG', 'GD', 'HIG', 'L', 'MET', 'MRSH', 'PRU', 'TRV']
+  Cluster 5 (size=13, avg_corr=0.5011): ['ADM', 'APA', 'BG', 'BKR', 'CF', 'CVX', 'HAL', 'MOS', 'NOC', 'OXY', 'SLB', 'TRGP', 'XOM']
+  Cluster 6 (size=37, avg_corr=0.5766): ['AEE', 'AEP', 'AMT', 'ATO', 'AVB', 'CCI', 'CMS', 'CNP', 'CPT', 'D', 'DOC', 'DTE', 'DUK', 'ED', 'EIX', 'EQR', 'ES', 'ETR', 'EVRG', 'EXC', 'FE', 'LNT', 'MAA', 'NI', 'O', 'PEG', 'PNW', 'PPL', 'PSA', 'RSG', 'SBAC', 'SO', 'UDR', 'VTR', 'WEC', 'WELL', 'XEL']
+  Cluster 7 (size=7, avg_corr=0.5923): ['AMAT', 'EME', 'FIX', 'KLAC', 'LRCX', 'STX', 'WDC']
+  Cluster 8 (size=2, avg_corr=0.7771): ['AZO', 'ORLY']
+  Cluster 9 (size=20, avg_corr=0.5654): ['BAC', 'CFG', 'FITB', 'FRT', 'HBAN', 'KEY', 'KIM', 'MA', 'MTB', 'NUE', 'OKE', 'PNC', 'REG', 'RF', 'STLD', 'STT', 'TFC', 'UNP', 'USB', 'VMC']
+  Cluster 10 (size=4, avg_corr=0.3592): ['CMCSA', 'GIS', 'T', 'VZ']
+  Cluster 11 (size=13, avg_corr=0.5629): ['COP', 'DOW', 'DVN', 'EOG', 'EQT', 'EXE', 'FANG', 'KMI', 'LYB', 'MPC', 'PSX', 'VLO', 'WMB']
+  Cluster 12 (size=3, avg_corr=0.4357): ['COR', 'ELV', 'MCK']
+  Cluster 13 (size=4, avg_corr=0.7150): ['DHI', 'LEN', 'MLM', 'PHM']
+  Cluster 14 (size=3, avg_corr=0.5254): ['DLR', 'ESS', 'EXR']
+  Cluster 15 (size=2, avg_corr=0.9862): ['FOX', 'FOXA']
+  Cluster 16 (size=2, avg_corr=0.9954): ['GOOG', 'GOOGL']
+  Cluster 17 (size=3, avg_corr=0.4008): ['GWW', 'LHX', 'LMT']
+  Cluster 18 (size=2, avg_corr=0.7128): ['HCA', 'UHS']
+  Cluster 19 (size=2, avg_corr=0.7001): ['NRG', 'VST']
+  Cluster 20 (size=2, avg_corr=0.9738): ['NWS', 'NWSA']
+  Cluster 21 (size=1, avg_corr=nan): ['WM']
+
+[3] REPRESENTATIVE STOCK SELECTION
+----------------------------------------
+  Selected 21 stocks (min volatility per cluster):
+  ['LIN', 'KO', 'TJX', 'BRK-B', 'CVX', 'DUK', 'EME', 'ORLY', 'REG', 'GIS', 'KMI', 'COR', 'MLM', 'ESS', 'FOX', 'GOOG', 'LMT', 'HCA', 'NRG', 'NWSA', 'WM']
+
+[4] PORTFOLIO CONSTRUCTION (Single Period)
+----------------------------------------
+
+  Risk Parity Weights:
+       LIN: 0.0456 (4.6%)
+        KO: 0.0623 (6.2%)
+       TJX: 0.0469 (4.7%)
+     BRK-B: 0.0502 (5.0%)
+       CVX: 0.0511 (5.1%)
+       DUK: 0.0604 (6.0%)
+       EME: 0.0356 (3.6%)
+      ORLY: 0.0550 (5.5%)
+       REG: 0.0380 (3.8%)
+       GIS: 0.0658 (6.6%)
+       KMI: 0.0443 (4.4%)
+       COR: 0.0596 (6.0%)
+       MLM: 0.0339 (3.4%)
+       ESS: 0.0405 (4.1%)
+       FOX: 0.0453 (4.5%)
+      GOOG: 0.0423 (4.2%)
+       LMT: 0.0614 (6.1%)
+       HCA: 0.0353 (3.5%)
+       NRG: 0.0320 (3.2%)
+      NWSA: 0.0363 (3.6%)
+        WM: 0.0582 (5.8%)
+    Portfolio Return: 15.02%
+    Portfolio Vol:    12.60%
+    Sharpe Ratio:    1.192
+
+  Min Variance Weights:
+        KO: 0.1852 (18.5%)
+       TJX: 0.0535 (5.4%)
+     BRK-B: 0.0295 (3.0%)
+       CVX: 0.0737 (7.4%)
+       DUK: 0.1062 (10.6%)
+       EME: 0.0424 (4.2%)
+      ORLY: 0.0440 (4.4%)
+       GIS: 0.1009 (10.1%)
+       COR: 0.0820 (8.2%)
+       FOX: 0.0603 (6.0%)
+      GOOG: 0.0631 (6.3%)
+       LMT: 0.0795 (8.0%)
+        WM: 0.0798 (8.0%)
+    Portfolio Return: 14.10%
+    Portfolio Vol:    11.62%
+    Sharpe Ratio:    1.213
+
+[5] BACKTESTING
+----------------------------------------
+
+  --- RISK_PARITY ---
+
+  risk_parity Portfolio Metrics:
+    Total Return:          84.36%
+    Ann. Return:           16.65%
+    Ann. Volatility:       13.05%
+    Sharpe Ratio:          1.276
+    Sortino Ratio:         1.861
+    Max Drawdown:         -13.85%
+    Calmar Ratio:          1.202
+
+  Equal-Weight Benchmark:
+    Total Return:          86.59%
+    Ann. Return:           17.00%
+    Sharpe Ratio:          1.021
+    Max Drawdown:         -17.86%
+
+  --- MIN_VARIANCE ---
+
+  min_variance Portfolio Metrics:
+    Total Return:          86.74%
+    Ann. Return:           17.03%
+    Ann. Volatility:       12.28%
+    Sharpe Ratio:          1.387
+    Sortino Ratio:         1.999
+    Max Drawdown:         -13.89%
+    Calmar Ratio:          1.225
+
+  Equal-Weight Benchmark:
+    Total Return:          86.59%
+    Ann. Return:           17.00%
+    Sharpe Ratio:          1.021
+    Max Drawdown:         -17.86%
+
+======================================================================
+SUMMARY
+======================================================================
+  Paper: arXiv:2103.14506 - Asset Selection via Correlation Blockmodel
+  Data: S&P 500, 493 stocks, 2021-05-11 00:00:00 to 2026-05-06 00:00:00
+  ACC found 21 clusters (epsilon=0.4305)
+  Selected 21 representative stocks
+  Tail index alpha=2.899 (2.0=Gaussian)
+======================================================================

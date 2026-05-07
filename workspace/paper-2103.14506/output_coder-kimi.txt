@@ -1,0 +1,97 @@
+
+[1] Loading data...
+    Lookback window: 500 days
+    Assets after filtering: 501
+
+[2] Running ACC algorithm...
+    Estimated alpha (heavy-tailedness): 0.6278
+    Estimated L: 0.6650
+    Epsilon search range: [0.029829, 2.000000]
+    Best epsilon: 0.467644
+    Number of clusters found: 23
+    Average intra-cluster correlation: 0.4231
+
+[3] Cluster sizes:
+    Cluster 1: 3 assets
+    Cluster 2: 4 assets
+    Cluster 3: 133 assets
+    Cluster 4: 29 assets
+    Cluster 5: 42 assets
+    Cluster 6: 16 assets
+    Cluster 7: 34 assets
+    Cluster 8: 18 assets
+    Cluster 9: 36 assets
+    Cluster 10: 7 assets
+    Cluster 11: 26 assets
+    Cluster 12: 39 assets
+    Cluster 13: 4 assets
+    Cluster 14: 36 assets
+    Cluster 15: 31 assets
+    Cluster 16: 24 assets
+    Cluster 17: 9 assets
+    Cluster 18: 2 assets
+    Cluster 19: 2 assets
+    Cluster 20: 2 assets
+    Cluster 21: 2 assets
+    Cluster 22: 1 assets
+    Cluster 23: 1 assets
+
+[4] Selected representatives (lowest variance in each cluster):
+    Cluster  1: GOOG    (variance = 0.000351)
+    Cluster  2: NWSA    (variance = 0.000221)
+    Cluster  3: BRK-B   (variance = 0.000118)
+    Cluster  4: EVRG    (variance = 0.000100)
+    Cluster  5: TT      (variance = 0.000302)
+    Cluster  6: AVY     (variance = 0.000210)
+    Cluster  7: WM      (variance = 0.000148)
+    Cluster  8: CVX     (variance = 0.000217)
+    Cluster  9: WEC     (variance = 0.000105)
+    Cluster 10: TJX     (variance = 0.000128)
+    Cluster 11: MDT     (variance = 0.000169)
+    Cluster 12: VLTO    (variance = 0.000176)
+    Cluster 13: KMI     (variance = 0.000206)
+    Cluster 14: MSFT    (variance = 0.000241)
+    Cluster 15: ABT     (variance = 0.000196)
+    Cluster 16: CSCO    (variance = 0.000235)
+    Cluster 17: CME     (variance = 0.000133)
+    Cluster 18: ADM     (variance = 0.000286)
+    Cluster 19: CMCSA   (variance = 0.000312)
+    Cluster 20: HCA     (variance = 0.000305)
+    Cluster 21: DLR     (variance = 0.000260)
+    Cluster 22: COR     (variance = 0.000259)
+    Cluster 23: RTX     (variance = 0.000244)
+
+[5] Cluster compositions (top holdings):
+    Cluster  1 (3 assets): AMZN, GOOG, GOOGL
+    Cluster  2 (4 assets): FOX, FOXA, NWS, NWSA
+    Cluster  3 (133 assets): ABNB, ADI, AIZ, AME, AMP, APO, APTV, ARES, AXP, BAC ...
+    Cluster  4 (29 assets): AFL, ARE, ATO, AVB, CPT, CTAS, DOC, ECL, EQR, ESS ...
+    Cluster  5 (42 assets): A, AMAT, AMD, ANET, APH, AVGO, CDNS, CEG, CIEN, COHR ...
+    Cluster  6 (16 assets): ALLE, AMCR, AOS, AVY, DHI, GPC, HAS, HD, LEN, LII ...
+    Cluster  7 (34 assets): ACGL, ADP, AIG, AJG, ALL, AON, BR, BRO, CB, COST ...
+    Cluster  8 (18 assets): APA, BKR, CF, COP, CVX, DOW, DVN, EOG, FANG, HAL ...
+    Cluster  9 (36 assets): AEE, AEP, AMT, AWK, CCI, CL, CMS, CNP, D, DGX ...
+    Cluster 10 (7 assets): AZO, CASY, ORLY, PEP, TJX, TSCO, WMT
+    Cluster 11 (26 assets): ABBV, AMGN, BALL, BDX, BF-B, CAG, CHD, CLX, CPB, GIS ...
+    Cluster 12 (39 assets): AAPL, ACN, ADSK, ALB, ALGN, BAX, BIIB, BMY, COO, CSGP ...
+    Cluster 13 (4 assets): EQT, EXE, KMI, WMB
+    Cluster 14 (36 assets): ADBE, AKAM, APP, AXON, BKNG, COIN, CPRT, CRM, CRWD, CVNA ...
+    Cluster 15 (31 assets): ABT, APD, BSX, CI, CMG, CNC, CTVA, CVS, DE, DPZ ...
+    Cluster 16 (24 assets): AES, BA, CHRW, CSCO, DECK, DG, DLTR, DXCM, EA, EW ...
+    Cluster 17 (9 assets): CAH, CBOE, CME, KR, LHX, MCK, NOC, PM, TMUS
+    Cluster 18 (2 assets): ADM, BG
+    Cluster 19 (2 assets): CHTR, CMCSA
+    Cluster 20 (2 assets): HCA, UHS
+    Cluster 21 (2 assets): DLR, EQIX
+    Cluster 22 (1 assets): COR
+    Cluster 23 (1 assets): RTX
+
+[6] Summary statistics:
+    Mean intra-cluster correlation: 0.4231
+    Mean inter-cluster correlation: 0.2012
+    Std intra-cluster correlation:  0.1383
+    Std inter-cluster correlation:  0.1325
+
+======================================================================
+Done.
+======================================================================

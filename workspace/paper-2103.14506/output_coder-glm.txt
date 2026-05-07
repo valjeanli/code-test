@@ -1,0 +1,224 @@
+======================================================================
+ACC Algorithm: Asset Selection via Correlation Blockmodel Clustering
+Paper: Tang, Xu, Zhou (2021), arXiv:2103.14506
+======================================================================
+
+[1] Loading S&P 500 data...
+  Raw data: 625502 rows, 503 tickers
+  Date range: 2021-05-10 00:00:00-04:00 to 2026-05-06 00:00:00-04:00
+
+[2] Computing daily returns...
+  Returns matrix: 1253 days × 493 assets
+  Date range: 2021-05-11 00:00:00-04:00 to 2026-05-06 00:00:00-04:00
+
+[3] Running ACC Algorithm...
+  Using lookback window of 500 days
+ACC Algorithm: n=500 observations, d=493 assets
+Parameters: a=0.1, b=10.0, n_grids=100, U=(15, 25), k=125
+Sample correlation matrix computed: (493, 493)
+  Mean off-diagonal correlation: 0.2263
+CORD matrix computed. Range: [0.000000, 1.235490]
+Heavy-tail estimation: α=0.6193, L=0.6923
+/opt/data/kanban/workspaces/t_495c42bc/workspace/paper-2103.14506/code_coder-glm.py:400: RuntimeWarning: overflow encountered in scalar power
+  power_val = (log_d) ** (4.0 / max(alpha - 1, 0.01))
+ε search range: [0.005337, 0.533712]
+  base_scale = 0.053371
+
+Best ε = 0.453655
+Number of clusters: 25
+Intra-cluster avg correlation: 0.4284
+Cluster sizes: [115, 46, 41, 40, 36, 33, 29, 28, 26, 26, 19, 15, 6, 6, 4, 4, 3, 3, 3, 2]...
+
+[4] Selecting representative assets (lowest variance per cluster)...
+  Selected 25 stocks:
+  Cluster 1 (2 stocks): selected GOOG (var=0.000351) | cluster: ['GOOG', 'GOOGL']
+  Cluster 2 (4 stocks): selected NWSA (var=0.000221) | cluster: ['FOX', 'FOXA', 'NWS', 'NWSA']
+  Cluster 3 (115 stocks): selected BRK-B (var=0.000118) | cluster: ['ADI', 'AIZ', 'AME', 'AMP', 'APO']...
+  Cluster 4 (26 stocks): selected ATO (var=0.000104) | cluster: ['AFL', 'ARE', 'ATO', 'AVB', 'CPT']...
+  Cluster 5 (41 stocks): selected TT (var=0.000302) | cluster: ['AMAT', 'AMD', 'AMZN', 'ANET', 'APH']...
+  Cluster 6 (15 stocks): selected AVY (var=0.000210) | cluster: ['ALLE', 'AOS', 'AVY', 'DHI', 'GPC']...
+  Cluster 7 (28 stocks): selected LIN (var=0.000122) | cluster: ['ACGL', 'ADP', 'AIG', 'AJG', 'ALL']...
+  Cluster 8 (19 stocks): selected CVX (var=0.000217) | cluster: ['APA', 'BKR', 'CF', 'COP', 'CVX']...
+  Cluster 9 (36 stocks): selected EVRG (var=0.000100) | cluster: ['AEE', 'AEP', 'AMT', 'AWK', 'CCI']...
+  Cluster 10 (6 stocks): selected TJX (var=0.000128) | cluster: ['AZO', 'CASY', 'MCD', 'ORLY', 'TJX']...
+  Cluster 11 (26 stocks): selected PG (var=0.000135) | cluster: ['AMCR', 'BALL', 'BF-B', 'CAG', 'CHD']...
+  Cluster 12 (46 stocks): selected GD (var=0.000184) | cluster: ['A', 'AAPL', 'ABBV', 'ACN', 'ALGN']...
+  Cluster 13 (4 stocks): selected KMI (var=0.000206) | cluster: ['EQT', 'EXE', 'KMI', 'WMB']
+  Cluster 14 (40 stocks): selected MSFT (var=0.000241) | cluster: ['ABNB', 'ADBE', 'ADSK', 'AKAM', 'APP']...
+  Cluster 15 (29 stocks): selected MSI (var=0.000177) | cluster: ['ABT', 'APD', 'CI', 'CMG', 'CNC']...
+  Cluster 16 (33 stocks): selected WMT (var=0.000218) | cluster: ['AES', 'ALB', 'BA', 'BSX', 'CHRW']...
+  Cluster 17 (6 stocks): selected CME (var=0.000133) | cluster: ['CAH', 'CBOE', 'CME', 'KR', 'PM']...
+  Cluster 18 (3 stocks): selected ADM (var=0.000286) | cluster: ['ADM', 'BG', 'MOS']
+  Cluster 19 (2 stocks): selected CMCSA (var=0.000312) | cluster: ['CHTR', 'CMCSA']
+  Cluster 20 (2 stocks): selected HCA (var=0.000305) | cluster: ['HCA', 'UHS']
+  Cluster 21 (3 stocks): selected DLR (var=0.000260) | cluster: ['DLR', 'EQIX', 'IRM']
+  Cluster 22 (3 stocks): selected LHX (var=0.000211) | cluster: ['COR', 'LHX', 'MCK']
+  Cluster 23 (2 stocks): selected RTX (var=0.000244) | cluster: ['NOC', 'RTX']
+  Cluster 24 (1 stocks): selected LH (var=0.000222) | cluster: ['LH']
+  Cluster 25 (1 stocks): selected MCO (var=0.000270) | cluster: ['MCO']
+
+[5] Constructing portfolios...
+
+  Risk Parity weights:
+    GOOG  : 0.0212
+    NWSA  : 0.0336
+    BRK-B : 0.0629
+    ATO   : 0.0713
+    TT    : 0.0246
+    AVY   : 0.0354
+    LIN   : 0.0610
+    CVX   : 0.0342
+    EVRG  : 0.0742
+    TJX   : 0.0582
+    PG    : 0.0550
+    GD    : 0.0404
+    KMI   : 0.0360
+    MSFT  : 0.0309
+    MSI   : 0.0419
+    WMT   : 0.0340
+    CME   : 0.0559
+    ADM   : 0.0260
+    CMCSA : 0.0238
+    HCA   : 0.0243
+    DLR   : 0.0285
+    LHX   : 0.0352
+    RTX   : 0.0305
+    LH    : 0.0334
+    MCO   : 0.0275
+
+  Minimum Variance weights:
+    GOOG  : 0.0572
+    NWSA  : 0.0028
+    BRK-B : 0.0222
+    ATO   : 0.0543
+    TT    : 0.0000
+    AVY   : 0.0000
+    LIN   : 0.0000
+    CVX   : 0.0907
+    EVRG  : 0.1334
+    TJX   : 0.0971
+    PG    : 0.1122
+    GD    : 0.0000
+    KMI   : 0.0000
+    MSFT  : 0.1196
+    MSI   : 0.0000
+    WMT   : 0.0000
+    CME   : 0.2038
+    ADM   : 0.0259
+    CMCSA : 0.0136
+    HCA   : 0.0261
+    DLR   : 0.0249
+    LHX   : 0.0016
+    RTX   : 0.0148
+    LH    : 0.0000
+    MCO   : 0.0000
+
+  Mean-Variance weights (target 10% annual):
+    GOOG  : 0.0572
+    NWSA  : 0.0028
+    BRK-B : 0.0222
+    ATO   : 0.0543
+    TT    : 0.0000
+    AVY   : 0.0000
+    LIN   : 0.0000
+    CVX   : 0.0907
+    EVRG  : 0.1334
+    TJX   : 0.0971
+    PG    : 0.1122
+    GD    : 0.0000
+    KMI   : 0.0000
+    MSFT  : 0.1196
+    MSI   : 0.0000
+    WMT   : 0.0000
+    CME   : 0.2038
+    ADM   : 0.0259
+    CMCSA : 0.0136
+    HCA   : 0.0261
+    DLR   : 0.0249
+    LHX   : 0.0016
+    RTX   : 0.0148
+    LH    : 0.0000
+    MCO   : 0.0000
+
+[6] Computing portfolio performance (out-of-sample)...
+
+  Risk Parity Portfolio (full period):
+    Annual Return:       13.29%
+    Annual Volatility:   13.02%
+    Sharpe Ratio:        0.7137
+    Sortino Ratio:       0.6905
+    Calmar Ratio:        0.7354
+    Max Drawdown:        18.08%
+    Recovery Days:       187
+    Ending VAMI ($1):    1.86
+    Positive Days:       54.8%
+
+  Minimum Variance Portfolio (full period):
+    Annual Return:       13.95%
+    Annual Volatility:   12.49%
+    Sharpe Ratio:        0.7968
+    Sortino Ratio:       0.7640
+    Calmar Ratio:        0.7087
+    Max Drawdown:        19.69%
+    Recovery Days:       192
+    Ending VAMI ($1):    1.92
+    Positive Days:       55.7%
+
+  Mean-Variance (10%) Portfolio (full period):
+    Annual Return:       13.95%
+    Annual Volatility:   12.49%
+    Sharpe Ratio:        0.7968
+    Sortino Ratio:       0.7640
+    Calmar Ratio:        0.7087
+    Max Drawdown:        19.69%
+    Recovery Days:       192
+    Ending VAMI ($1):    1.92
+    Positive Days:       55.7%
+
+[7] Benchmark: Equal-weight S&P 500 portfolio...
+  Annual Return:       13.53%
+  Annual Volatility:   16.71%
+  Sharpe Ratio:        0.5704
+    Sortino Ratio:     0.5717
+    Max Drawdown:      20.05%
+    Ending VAMI ($1):  1.83
+
+======================================================================
+SUMMARY
+======================================================================
+
+ACC Algorithm identified 25 clusters from 493 S&P 500 stocks
+Selected 25 representative stocks (lowest variance per cluster)
+
+Selected tickers: ['GOOG', 'NWSA', 'BRK-B', 'ATO', 'TT', 'AVY', 'LIN', 'CVX', 'EVRG', 'TJX', 'PG', 'GD', 'KMI', 'MSFT', 'MSI', 'WMT', 'CME', 'ADM', 'CMCSA', 'HCA', 'DLR', 'LHX', 'RTX', 'LH', 'MCO']
+
+Cluster composition:
+  Cluster  1:   2 stocks | Rep: GOOG   | Members: GOOG, GOOGL
+  Cluster  2:   4 stocks | Rep: NWSA   | Members: FOX, FOXA, NWS, NWSA
+  Cluster  3: 115 stocks | Rep: BRK-B  | Members: ADI, AIZ, AME, AMP, APO, ARES, AXP, BAC...
+  Cluster  4:  26 stocks | Rep: ATO    | Members: AFL, ARE, ATO, AVB, CPT, CTAS, DOC, ECL...
+  Cluster  5:  41 stocks | Rep: TT     | Members: AMAT, AMD, AMZN, ANET, APH, AVGO, CDNS, CIEN...
+  Cluster  6:  15 stocks | Rep: AVY    | Members: ALLE, AOS, AVY, DHI, GPC, HAS, HD, LEN...
+  Cluster  7:  28 stocks | Rep: LIN    | Members: ACGL, ADP, AIG, AJG, ALL, AON, BR, BRO...
+  Cluster  8:  19 stocks | Rep: CVX    | Members: APA, BKR, CF, COP, CVX, DOW, DVN, EOG...
+  Cluster  9:  36 stocks | Rep: EVRG   | Members: AEE, AEP, AMT, AWK, CCI, CL, CMS, CNP...
+  Cluster 10:   6 stocks | Rep: TJX    | Members: AZO, CASY, MCD, ORLY, TJX, TSCO
+  Cluster 11:  26 stocks | Rep: PG     | Members: AMCR, BALL, BF-B, CAG, CHD, CLX, CPB, GIS...
+  Cluster 12:  46 stocks | Rep: GD     | Members: A, AAPL, ABBV, ACN, ALGN, AMGN, APTV, BAX...
+  Cluster 13:   4 stocks | Rep: KMI    | Members: EQT, EXE, KMI, WMB
+  Cluster 14:  40 stocks | Rep: MSFT   | Members: ABNB, ADBE, ADSK, AKAM, APP, AXON, BKNG, COIN...
+  Cluster 15:  29 stocks | Rep: MSI    | Members: ABT, APD, CI, CMG, CNC, CTVA, CVS, DE...
+  Cluster 16:  33 stocks | Rep: WMT    | Members: AES, ALB, BA, BSX, CHRW, CSCO, DECK, DG...
+  Cluster 17:   6 stocks | Rep: CME    | Members: CAH, CBOE, CME, KR, PM, TMUS
+  Cluster 18:   3 stocks | Rep: ADM    | Members: ADM, BG, MOS
+  Cluster 19:   2 stocks | Rep: CMCSA  | Members: CHTR, CMCSA
+  Cluster 20:   2 stocks | Rep: HCA    | Members: HCA, UHS
+  Cluster 21:   3 stocks | Rep: DLR    | Members: DLR, EQIX, IRM
+  Cluster 22:   3 stocks | Rep: LHX    | Members: COR, LHX, MCK
+  Cluster 23:   2 stocks | Rep: RTX    | Members: NOC, RTX
+  Cluster 24:   1 stocks | Rep: LH     | Members: LH
+  Cluster 25:   1 stocks | Rep: MCO    | Members: MCO
+
+======================================================================
+DONE
+======================================================================
