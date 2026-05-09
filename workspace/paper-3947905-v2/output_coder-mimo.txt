@@ -1,0 +1,73 @@
+======================================================================
+REGIME DETECTION v2 (REWRITE): arXiv 2306.15835
+Non-parametric online market regime detection
+using path signatures and MMD
+======================================================================
+
+[1/8] Loading S&P 500 data...
+  Loaded 5031 trading days
+  Date range: 2006-01-03 to 2025-12-31
+  Price range: 676.53 - 6932.05
+
+[2/8] Computing features...
+  Features computed: ['daily_return', 'rolling_return_20d', 'rolling_vol_20d', 'rolling_return_60d', 'rolling_vol_60d', 'rsi_14d']
+  Valid samples: 5011
+
+[3/8] Assigning regimes via feature-based clustering...
+  Regimes detected: 3
+    Regime 0 (bear): 117 days (2.3%), mean_ret=-0.003027, vol=0.044699
+    Regime 1 (sideways): 1210 days (24.1%), mean_ret=-0.002060, vol=0.015421
+    Regime 2 (bull): 3684 days (73.5%), mean_ret=0.001278, vol=0.007854
+
+[4/8] Detecting transitions via MMD auto-evaluation...
+  Sub-paths: 5004, window=8, ensemble=8
+  Scores computed: 5004, non-zero: 4485
+  Threshold alpha: 0.95
+  MMD transitions detected: 72
+  First: 2007-03-26, Last: 2025-04-29
+
+[5/8] Building transition flags...
+  Total transitions: 121
+
+[6/8] Computing confidence scores...
+  Confidence range: [0.1000, 1.0000]
+  Mean confidence: 0.3224
+
+[7/8] Building output DataFrame...
+  Output rows: 1168
+  Date range: 2021-05-10 to 2025-12-31
+  Transitions: 30
+
+[8/8] Validating and writing output...
+  Validation PASSED!
+  CSV saved: /opt/data/kanban/workspaces/t_6d00a3d1/paper-3947905-v2/sig_mmd_regimes.csv
+  Metadata saved: /opt/data/kanban/workspaces/t_6d00a3d1/paper-3947905-v2/sig_mmd_metadata.json
+
+======================================================================
+REGIME DETECTION RESULTS SUMMARY
+======================================================================
+
+Total rows: 1168
+Date range: 2021-05-10 to 2025-12-31
+Transitions: 30
+
+Regime distribution:
+  Regime 0 (bear): 5 days (0.4%)
+  Regime 1 (sideways): 314 days (26.9%)
+  Regime 2 (bull): 849 days (72.7%)
+
+First 10 transitions:
+  2021-09-28: regime 2 -> 1 (sideways)
+  2021-10-15: regime 1 -> 2 (bull)
+  2021-12-16: regime 2 -> 1 (sideways)
+  2021-12-23: regime 1 -> 2 (bull)
+  2022-01-20: regime 2 -> 1 (sideways)
+  2022-03-18: regime 1 -> 2 (bull)
+  2022-04-20: regime 2 -> 1 (sideways)
+  2022-07-13: regime 1 -> 2 (bull)
+  2022-08-26: regime 2 -> 1 (sideways)
+  2022-10-24: regime 1 -> 2 (bull)
+
+======================================================================
+DONE
+======================================================================

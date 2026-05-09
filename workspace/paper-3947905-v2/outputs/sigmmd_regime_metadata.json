@@ -1,0 +1,48 @@
+{
+  "algorithm": "sigmmd_regime",
+  "algorithm_full_name": "Signature MMD-based Regime Detection (Auto-Evaluator v2)",
+  "algorithm_family": "changepoint",
+  "paper_reference": "arXiv:2306.15835",
+  "num_regimes": 4,
+  "regime_labels_map": {
+    "0": "bear",
+    "1": "bull",
+    "2": "bear",
+    "3": "bull"
+  },
+  "parameters": {
+    "h1": 21,
+    "h2": 12,
+    "sig_level": 2,
+    "rbf_sigma": 1.0,
+    "z_score_k": 2.5,
+    "rolling_window": 504,
+    "L": [
+      4,
+      8,
+      12
+    ],
+    "L_weights": [
+      0.5,
+      0.3,
+      0.2
+    ],
+    "annualize_scale": 15.874507866387544,
+    "cluster_method": "ward",
+    "training_window_days": null,
+    "features_used": [
+      "log_return",
+      "path_signature_level2",
+      "time_channel"
+    ],
+    "random_seed": 42
+  },
+  "training_window_days": null,
+  "features_used": [
+    "log_return",
+    "path_signature_level2",
+    "time_channel"
+  ],
+  "generated_at": "2026-05-09T03:27:41Z",
+  "output_spec_version": "1.0"
+}

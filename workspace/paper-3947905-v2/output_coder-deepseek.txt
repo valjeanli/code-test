@@ -1,0 +1,87 @@
+======================================================================
+REGIME DETECTION via SIGNATURE MMD (Auto-Evaluator) — v2 REWRITTEN
+Paper: Horvath & Issa 2023, arXiv:2306.15835
+======================================================================
+Config: h1=21, h2=12, sig_level=2
+MMD: rbf kernel, σ=1.0
+Auto-evaluator v2: L=[4, 8, 12], z_k=2.5, roll=504
+
+1. Loading S&P 500 data...
+   Loaded 5031 trading days: 2006-01-03 to 2025-12-31
+
+2. Computing log returns and path transformations...
+   Path shape: (5031, 2) (T=5031, d=2)
+
+3. Extracting sub-paths and forming ensembles...
+   Sub-paths: 5011 (length h1=21)
+   Ensembles:  5000 (size h2=12)
+
+4. Computing truncated path signatures...
+   Signature dimension: 7 (level=2, d=2)
+
+5. Running auto-evaluator v2 (rolling z-score threshold)...
+   Valid scores: 4988/5000
+   Regime changes detected: 187 (3.75%)
+   Score mean: 0.076960
+   Score std:  0.089973
+   Score quantiles: p25=0.009131, p50=0.037699, p75=0.123603, p95=0.264676
+   Z-score k: 2.5
+
+6. Determining number of regimes...
+   Targeting 4 regimes (changes=187)
+
+7. Clustering regimes (robust agglomerative with fallback)...
+   Downsampling 5000 → 2500 for efficient clustering (step=2)
+   Scipy agglomerative clustering (ward): 4 regimes from 2500 samples
+     Regime 0: 934 ensembles (18.7%)
+     Regime 1: 1490 ensembles (29.8%)
+     Regime 2: 879 ensembles (17.6%)
+     Regime 3: 1697 ensembles (33.9%)
+
+8. Assigning regime labels...
+     Regime 0 → 'bear' (934 ensembles)
+     Regime 1 → 'bull' (1490 ensembles)
+     Regime 2 → 'bear' (879 ensembles)
+     Regime 3 → 'bull' (1697 ensembles)
+
+9. Generating validated output files...
+   ✅ All validation checks passed.
+   Saved /opt/data/kanban/workspaces/t_c36a4eed/paper-3947905-v2/outputs/sigmmd_regime_regimes.csv (1168 rows)
+   Saved /opt/data/kanban/workspaces/t_c36a4eed/paper-3947905-v2/outputs/sigmmd_regime_metadata.json
+
+======================================================================
+REGIME DETECTION SUMMARY (v2)
+======================================================================
+Algorithm:       Signature MMD-based Regime Detection (Auto-Evaluator v2)
+Paper:           arXiv:2306.15835
+Num regimes:     4
+Regime labels:   {'0': 'bear', '1': 'bull', '2': 'bear', '3': 'bull'}
+Transitions:     187 (3.8%)
+Score range:     [-0.068009, 0.471596]
+Threshold method: rolling z-score (k=2.5, window=504)
+Output CSV:      /opt/data/kanban/workspaces/t_c36a4eed/paper-3947905-v2/outputs/sigmmd_regime_regimes.csv
+Output JSON:     /opt/data/kanban/workspaces/t_c36a4eed/paper-3947905-v2/outputs/sigmmd_regime_metadata.json
+
+Detected transition dates in evaluation window (top 20):
+  2021-09-20
+  2022-02-14
+  2022-02-15
+  2022-02-16
+  2022-02-17
+  2022-02-18
+  2022-03-16
+  2022-03-17
+  2022-03-18
+  2022-03-21
+  2022-03-22
+  2022-03-24
+  2022-04-25
+  2022-04-26
+  2022-04-27
+  2022-06-09
+  2022-06-10
+  2022-06-13
+  2022-07-22
+  2022-07-25
+  ... and 19 more
+======================================================================

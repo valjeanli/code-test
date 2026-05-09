@@ -1,0 +1,61 @@
+======================================================================
+NON-PARAMETRIC ONLINE MARKET REGIME DETECTION (v2 REWRITE)
+Implementation of arXiv:2306.15835 (Horvath & Issa, 2023)
+======================================================================
+
+[1] Loading S&P 500 data...
+  Total rows: 5031, Eval window: 1168 days
+  Date range: 2021-05-10 to 2025-12-31
+
+[2] Building price path with lookback...
+  Path shape: (1443, 2) (1443 days with lookback)
+
+[3] Running signature-kernel MMD regime detection...
+  Computing MMD scores for 137 ensembles...
+    Progress: 0/137
+    Progress: 50/137
+    Progress: 100/137
+  MMD change points: 10
+  MMD scores — Mean: 0.000781, Std: 0.003028, Max: 0.021596
+
+[4] Mapping to daily regimes in evaluation window...
+  Raw regimes in eval window: 11
+
+[5] Post-processing: merge short segments, cluster into target regimes...
+  After merging: 8 regimes
+  Clustering 8 raw regimes into 4 target regimes...
+  Final: 4 regimes, 5 transitions (0.4% transition rate)
+    Regime 0 (bear): 40 days
+    Regime 1 (crisis): 280 days
+    Regime 2 (bull): 135 days
+    Regime 3 (calm): 713 days
+
+[6] Building output CSV...
+
+[7] Building metadata JSON...
+
+[8] Validating output...
+  All validation checks passed!
+
+  Output: 1168 rows, 4 regimes
+  Date range: 2021-05-10 to 2025-12-31
+  Transitions: 5 (0.4%)
+
+[9] Writing output files...
+  CSV: /opt/data/kanban/workspaces/t_1b79a957/paper-3947905-v2/sig_mmd_horvath_issa_regimes.csv
+  JSON: /opt/data/kanban/workspaces/t_1b79a957/paper-3947905-v2/sig_mmd_horvath_issa_metadata.json
+
+======================================================================
+SUMMARY
+======================================================================
+  Algorithm: Signature-Kernel MMD Regime Detection (Horvath–Issa 2023)
+  Paper: arXiv:2306.15835
+  Window: 2021-05-10 – 2025-12-31
+  Days: 1168, Regimes: 4
+  Labels: {'0': 'bear', '1': 'crisis', '2': 'bull', '3': 'calm'}
+    bear (regime 0): 40 days, mean_ret=-0.008%/d, vol=1.041%/d
+    crisis (regime 1): 280 days, mean_ret=-0.078%/d, vol=1.635%/d
+    bull (regime 2): 135 days, mean_ret=+0.086%/d, vol=0.680%/d
+    calm (regime 3): 713 days, mean_ret=+0.093%/d, vol=0.837%/d
+======================================================================
+DONE

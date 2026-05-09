@@ -1,0 +1,62 @@
+{
+  "algorithm": "sigmmd_regime",
+  "algorithm_full_name": "Signature MMD Regime Detection (Auto-Evaluator v2)",
+  "algorithm_family": "changepoint",
+  "paper_reference": "arXiv:2306.15835",
+  "num_regimes": 2,
+  "regime_labels_map": {
+    "0": "bull",
+    "1": "bear"
+  },
+  "parameters": {
+    "h1": 21,
+    "h2": 12,
+    "sig_level": 2,
+    "rbf_sigma": 1.0,
+    "alpha": 0.95,
+    "prior_window": 200,
+    "L": [
+      4,
+      8,
+      12
+    ],
+    "L_weights": [
+      0.5,
+      0.3,
+      0.2
+    ],
+    "annualize_scale": 15.874507866387544,
+    "threshold_z": 2.0,
+    "max_transition_rate": 0.2,
+    "training_window_days": null,
+    "features_used": [
+      "log_return",
+      "cumulative_return_21d",
+      "daily_vol_21d"
+    ],
+    "random_seed": 42,
+    "detector_diagnostics": {
+      "n_valid": 4988,
+      "n_changes": 227,
+      "transition_rate": 0.04550922213311949,
+      "score_mean": 0.21463615479660256,
+      "score_std": 0.13622378615066305,
+      "score_min": 0.01035808045803412,
+      "score_max": 0.6139747396662684,
+      "score_q25": 0.09938949204262408,
+      "score_q50": 0.18221635652076024,
+      "score_q75": 0.31437826951590664,
+      "score_q95": 0.4679289239077776,
+      "threshold_z_used": 2.0,
+      "threshold_mean": 0.45939675376841116
+    }
+  },
+  "training_window_days": null,
+  "features_used": [
+    "log_return",
+    "cumulative_return_21d",
+    "daily_vol_21d"
+  ],
+  "generated_at": "2026-05-09T03:02:20Z",
+  "output_spec_version": "1.0"
+}

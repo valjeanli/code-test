@@ -1,0 +1,35 @@
+{
+  "algorithm": "signature_mmd",
+  "algorithm_full_name": "Signature-MMD Adaptive Regime Detection with Segment Clustering",
+  "algorithm_family": "changepoint",
+  "paper_reference": "arXiv:2306.15835",
+  "num_regimes": 2,
+  "regime_labels_map": {
+    "0": "sideways",
+    "1": "bull"
+  },
+  "parameters": {
+    "path_length": 21,
+    "stride": 5,
+    "n_reference": 10,
+    "n_test": 10,
+    "step": 2,
+    "sig_depth": 4,
+    "rolling_window": 100,
+    "threshold_method": "rolling_median_mad",
+    "threshold_k": 1.5,
+    "threshold_min_pct": 60,
+    "suppress_width": 15,
+    "random_seed": 42,
+    "training_window_days": null,
+    "features_used": [
+      "log_return"
+    ]
+  },
+  "training_window_days": null,
+  "features_used": [
+    "log_return"
+  ],
+  "generated_at": "2026-05-09T03:27:44Z",
+  "output_spec_version": "1.0"
+}

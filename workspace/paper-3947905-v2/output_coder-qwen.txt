@@ -1,0 +1,53 @@
+================================================================================
+Market Regime Detection — Horvath & Issa (2023), arXiv:2306.15835
+REWRITE v2.1: S&P 500, daily output, zero-based regimes
+================================================================================
+
+[1/7] Loading data...
+  Shape: (5031, 7), Date range: 2006-01-03 to 2025-12-31
+
+[2/7] Evaluation window: 2021-05-10 to 2026-05-06, 1168 trading days
+
+[3/7] Building daily signature features (h1=20, level=2)...
+  Daily features: (1148, 20), Range: 2021-06-08 to 2025-12-31
+
+[4/7] Computing ensemble MMD diagnostics (auto-evaluator, Eq. 30)...
+  Ensembles: 5, Threshold: 0.540421, Gamma: 0.7898
+  MMD change points: 0
+
+[5/7] Clustering daily features into 3 regimes...
+  Regime 0: 354 days (30%), avg conf=0.623
+  Regime 1: 263 days (23%), avg conf=0.623
+  Regime 2: 551 days (47%), avg conf=0.625
+
+[6/7] Transitions: 46, rate=3.94%
+  2021-06-09: 2 → 1
+  2021-07-30: 1 → 2
+  2021-08-04: 2 → 1
+  2021-08-06: 1 → 2
+  2021-10-25: 2 → 1
+  2021-11-05: 1 → 2
+  2021-11-29: 2 → 1
+  2021-12-22: 1 → 0
+  2022-02-24: 0 → 2
+  2022-04-18: 2 → 0
+  2022-05-24: 0 → 2
+  2022-06-27: 2 → 0
+  2022-07-26: 0 → 2
+  2022-10-17: 2 → 0
+  2023-01-05: 0 → 2
+
+[7/7] Validating and writing output...
+  All validation checks passed ✓
+  CSV: /opt/data/kanban/workspaces/t_7afc4e91/paper-3947905-v2/sig_mmd_regime_regimes.csv (1168 rows)
+  JSON: /opt/data/kanban/workspaces/t_7afc4e91/paper-3947905-v2/sig_mmd_regime_metadata.json
+
+================================================================================
+OUTPUT SUMMARY
+================================================================================
+Algorithm: Signature MMD Regime Detection
+Asset: S&P 500 Index
+Date range: 2021-05-10 to 2025-12-31
+Rows: 1168, Regimes: 3 ([0, 1, 2])
+Transitions: 46 (3.94%)
+Files: /opt/data/kanban/workspaces/t_7afc4e91/paper-3947905-v2/sig_mmd_regime_regimes.csv, /opt/data/kanban/workspaces/t_7afc4e91/paper-3947905-v2/sig_mmd_regime_metadata.json

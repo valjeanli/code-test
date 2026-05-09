@@ -1,0 +1,73 @@
+{
+  "algorithm": "sig_mmd_online",
+  "algorithm_full_name": "Signature MMD Online Regime Detection (Horvath & Issa 2023)",
+  "algorithm_family": "changepoint",
+  "paper_reference": "arXiv:2306.15835",
+  "num_regimes": 3,
+  "regime_labels_map": {
+    "0": "bear",
+    "1": "sideways",
+    "2": "bull"
+  },
+  "parameters": {
+    "h1": 8,
+    "h2": 8,
+    "lags": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "lag_weights": {
+      "1": 0.4,
+      "2": 0.3,
+      "4": 0.2,
+      "8": 0.1
+    },
+    "alpha": 0.95,
+    "threshold_used": 0.95,
+    "prior_window": 200,
+    "signature_order": 3,
+    "rbf_sigma": 1.0,
+    "min_segment_len": 10,
+    "n_regimes": 3,
+    "training_window_days": null,
+    "features_used": [
+      "rolling_return_20d",
+      "rolling_vol_20d",
+      "daily_return"
+    ],
+    "random_seed": 42
+  },
+  "training_window_days": null,
+  "features_used": [
+    "rolling_return_20d",
+    "rolling_vol_20d",
+    "daily_return"
+  ],
+  "regime_stats": {
+    "0": {
+      "label": "bear",
+      "mean_return": -0.0030265766161496873,
+      "volatility": 0.04469908974884483,
+      "count": 111,
+      "win_rate": 0.4774774774774775
+    },
+    "1": {
+      "label": "sideways",
+      "mean_return": -0.002059678378118181,
+      "volatility": 0.015421063595933785,
+      "count": 1273,
+      "win_rate": 0.46504320502749413
+    },
+    "2": {
+      "label": "bull",
+      "mean_return": 0.0012778024648967114,
+      "volatility": 0.0078536746955893,
+      "count": 3627,
+      "win_rate": 0.5751309622277364
+    }
+  },
+  "generated_at": "2026-05-09T03:27:29.721963+00:00",
+  "output_spec_version": "1.0"
+}

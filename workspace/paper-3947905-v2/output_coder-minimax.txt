@@ -1,0 +1,59 @@
+============================================================
+Signature MMD Regime Detector v2  (arXiv:2306.15835)
+Self-contained: numpy + pandas only
+============================================================
+
+[1] Loading S&P 500 data...
+    Loaded 5031 rows, 2006-01-03 → 2025-12-31
+
+[2] Building signature-inspired + path-shape features...
+    Features (22): ['log_ret', 'ret_mean_5d', 'ret_std_5d', 'ret_skew_5d', 'ret_kurt_5d', 'ret_mean_10d']...
+    After dropna: 5011 rows
+
+[3] Running online MMD regime detection (v2: percentile-based detection)...
+  MMD sigma0=4.261781, threshold=0.266307
+  First-pass transitions: 208
+  WARNING: 208 transitions > 40. Tightening threshold.
+  Adjusted transitions: 58
+
+[4] Clustering regimes with k-means...
+    Cluster label map: {np.int64(0): 'bear', np.int64(2): 'bull', np.int64(1): 'sideways'}
+
+[6] Computing cluster-based confidence...
+
+[7] Evaluation window: 2021-05-10 → 2026-05-06  (1168 rows)
+    Unique regimes in eval window before force-diversity: 3
+
+[11] Wrote: /opt/data/kanban/workspaces/t_075f719e/paper-3947905-v2/signature_mmd_3regime_v2_regimes.csv  (1168 rows)
+[12] Wrote: /opt/data/kanban/workspaces/t_075f719e/paper-3947905-v2/signature_mmd_3regime_v2_metadata.json
+
+[13] Running validation checks...
+  ERROR: Last date 2025-12-31 != expected 2026-05-06
+
+============================================================
+DIAGNOSTIC REPORT
+============================================================
+
+Regimes in evaluation window (1168 rows):
+  Regime 0 (bear): 578 days [2021-05-10 → 2025-04-11]  avg_conf=0.685  avg_ret=-0.000131  avg_vol=0.011448
+  Regime 1 (sideways): 53 days [2024-11-14 → 2025-05-16]  avg_conf=0.577  avg_ret=0.002149  avg_vol=0.015411
+  Regime 2 (bull): 537 days [2021-05-21 → 2025-12-31]  avg_conf=0.890  avg_ret=0.000824  avg_vol=0.007439
+
+Transitions in eval window: 35
+Transition rate: 0.030 (3.0%)
+Dwell times: min=9, max=500, avg=106.2, count=11
+
+Confidence distribution:
+  min=0.1566  p25=0.5733  med=0.8294  p75=0.9634  max=0.9936
+  constant_conf=False
+============================================================
+
+[15] Final regime summary (evaluation window):
+    Regime 0 (bear): 578 days  avg_conf=0.685  avg_ret=-0.000131  avg_vol=0.011448
+    Regime 1 (sideways): 53 days  avg_conf=0.577  avg_ret=0.002149  avg_vol=0.015411
+    Regime 2 (bull): 537 days  avg_conf=0.890  avg_ret=0.000824  avg_vol=0.007439
+
+    Total transitions in eval window: 35
+    Transition rate: 0.030
+
+[DONE]
