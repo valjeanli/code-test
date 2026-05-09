@@ -1,0 +1,78 @@
+======================================================================
+REGIME DETECTION: arXiv 2306.15835 Implementation
+Non-parametric online market regime detection
+using path signatures and MMD
+======================================================================
+
+[1/6] Loading S&P 500 data...
+  Loaded 5031 trading days
+  Date range: 2006-01-03 to 2025-12-31
+  Price range: 676.53 - 6932.05
+
+[2/6] Computing features...
+  Features computed: ['daily_return', 'daily_vol_20d', 'cumulative_return_20d', 'rsi_14d']
+  Valid samples: 5011
+
+[3/6] Building sub-paths and computing signatures...
+  Sub-paths created: 5004 (window size = 8)
+  Ensemble size: 8
+  Signature truncation order: 3
+
+[4/6] Running L-lag auto evaluation (online regime detection)...
+  Lags: [1, 2, 4, 8]
+  Weights: {1: 0.4, 2: 0.3, 4: 0.2, 8: 0.1}
+  Alpha (threshold quantile): 0.95
+  Prior window: 200
+  Score vector length: 5004
+  Non-zero scores: 4485
+
+[5/6] Detecting change points...
+  Detected 72 regime transitions
+  First transition: 2007-03-26
+  Last transition: 2025-04-29
+
+[6/6] Assigning regime labels...
+  Regimes detected: 3
+    Regime 0 (bear): 69 days (1.4%)
+    Regime 2 (sideways): 2168 days (43.3%)
+    Regime 1 (bull): 2774 days (55.4%)
+
+======================================================================
+REGIME DETECTION RESULTS SUMMARY
+======================================================================
+
+Total regime transitions: 36
+
+Transition details:
+  2007-03-26: regime 1 -> 2 (sideways)
+  2007-04-10: regime 2 -> 1 (bull)
+  2007-11-12: regime 1 -> 2 (sideways)
+  2008-04-01: regime 2 -> 1 (bull)
+  2008-10-28: regime 1 -> 2 (sideways)
+  2008-11-11: regime 2 -> 0 (bear)
+  2008-11-26: regime 0 -> 1 (bull)
+  2008-12-11: regime 1 -> 0 (bear)
+  2008-12-26: regime 0 -> 2 (sideways)
+  2011-07-28: regime 2 -> 0 (bear)
+  2011-08-24: regime 0 -> 2 (sideways)
+  2012-12-18: regime 2 -> 1 (bull)
+  2013-07-31: regime 1 -> 2 (sideways)
+  2013-10-22: regime 2 -> 1 (bull)
+  2014-02-25: regime 1 -> 2 (sideways)
+  2014-03-11: regime 2 -> 1 (bull)
+  2014-09-09: regime 1 -> 2 (sideways)
+  2015-09-16: regime 2 -> 1 (bull)
+  2015-10-20: regime 1 -> 2 (sideways)
+  2016-03-16: regime 2 -> 1 (bull)
+
+Evaluation window regime distribution:
+  Regime 0 (bear): 14 days
+  Regime 1 (bull): 597 days
+  Regime 2 (sideways): 557 days
+
+CSV output saved to: /opt/data/kanban/workspaces/t_19cc81ac/paper-3947905/sig_mmd_regimes.csv
+Metadata saved to: /opt/data/kanban/workspaces/t_19cc81ac/paper-3947905/sig_mmd_metadata.json
+
+======================================================================
+DONE
+======================================================================

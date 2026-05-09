@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hermes-kanban/regime-detection/output-spec/v1",
+  "title": "Regime Detection Output Specification v1.0",
+  "description": "All Task #3 regime detection implementations MUST produce output files conforming to this specification. The evaluator (Task #4) will parse these files programmatically.",
+
+  "output_files": {
+    "description": "Each implementation produces TWO files in the evaluation-plan/outputs/ directory",
+    "regime_csv": {
+      "filename_pattern": "{algo_name}_regimes.csv",
+      "description": "CSV file with regime predictions for each trading day. One row per date. Sorted ascending by date.",
+      "format": "CSV with header row, comma-delimited, UTF-8, no BOM, no quoting unless value contains comma",
+      "required_columns": [
+        {
+          "name": "date",
+          "type": "string",
+          "format": "YYYY-MM-DD",
+          "description": "Trading date. Must match dates in sp500_ohlcv_5yr.parquet exactly.",
+          "example": "2023-06-15",
+          "constraints": "ISO 8601 date, no time component, sorted ascending, no gaps (include all trading days in the evaluation window)"
+        },
+        {
+          "name": "predicted_regime",
+          "type": "integer",
+          "description": "Predicted regime label. 0-indexed (first regime = 0). Must be contiguous integers starting from 0.",
+          "example": "1",
+          "constraints": "0 <= predicted_regime < num_regimes. Integer, no NaN, no negative values."
+        },
+        {
+          "name": "confidence",
+          "type": "float",
+          "description": "Confidence score for the regime assignment. 0.0 = no confidence, 1.0 = maximum confidence. If your algorithm doesn't produce confidences, use 1.0 for all rows.",
+          "example": "0.8732",
+          "constraints": "0.0 <= confidence <= 1.0. Float with up to 4 decimal places."
+        },
+        {
+          "name": "transition_flag",
+          "type": "integer",
+          "description": "1 if regime changed from previous trading day, 0 if same regime. First row in the file MUST have transition_flag=0.",
+          "example": "0",
+          "constraints": "0 or 1. Integer, not boolean."
+        }
+      ],
+      "optional_columns": [
+        {
+          "name": "regime_label",
+          "type": "string",
+          "description": "Human-readable regime name (e.g., 'bull', 'bear', 'sideways', 'high_vol'). Optional but recommended. If omitted, the evaluator will use 'regime_0', 'regime_1', etc.",
+          "example": "bull",
+          "constraints": "Alphanumeric + underscore only. Max 32 chars."
+        },
+        {
+          "name": "regime_return_forecast",
+          "type": "float",
+          "description": "Optional: algorithm's expected return for this regime (daily, decimal, e.g., 0.0005 = 5bps). Used for advanced Sharpe scoring.",
+          "example": "0.0003",
+          "constraints": "Float. Can be negative."
+        },
+        {
+          "name": "regime_vol_forecast",
+          "type": "float",
+          "description": "Optional: algorithm's expected volatility for this regime (daily, decimal).",
+          "example": "0.012",
+          "constraints": "Float > 0."
+        }
+      ]
+    },
+    "metadata_json": {
+      "filename_pattern": "{algo_name}_metadata.json",
+      "description": "JSON file describing the algorithm, its parameters, and provenance.",
+      "required_fields": {
+        "algorithm": {
+          "type": "string",
+          "description": "Short algorithm name. Used as {algo_name} in filenames. Lowercase, underscores, no spaces.",
+          "example": "hmm_gaussian_2state",
+          "constraints": "regex: ^[a-z][a-z0-9_]{1,31}$"
+        },
+        "algorithm_full_name": {
+          "type": "string",
+          "description": "Human-readable algorithm name for reports.",
+          "example": "2-State Gaussian Hidden Markov Model"
+        },
+        "algorithm_family": {
+          "type": "string",
+          "enum": ["hmm", "clustering", "changepoint", "ml_based", "trend_following", "other"],
+          "description": "Broad algorithm category for stratified evaluation."
+        },
+        "paper_reference": {
+          "type": "string",
+          "description": "arXiv ID or DOI if implementing from a paper. null if original implementation.",
+          "example": "arXiv:2103.14506",
+          "nullable": true
+        },
+        "num_regimes": {
+          "type": "integer",
+          "description": "Number of distinct regimes detected. Must match max(predicted_regime) + 1.",
+          "constraints": "1 <= num_regimes <= 20"
+        },
+        "regime_labels_map": {
+          "type": "object",
+          "description": "Mapping from predicted_regime integer to human-readable label. Keys are string integers ('0', '1', ...).",
+          "example": {"0": "bull", "1": "bear", "2": "sideways"},
+          "constraints": "Keys must cover all regime integers 0..num_regimes-1."
+        },
+        "parameters": {
+          "type": "object",
+          "description": "Key algorithm parameters with their values. Free-form but must include at minimum: training_window_days (int or null for full-sample) and features_used (string array).",
+          "example": {
+            "n_states": 2,
+            "covariance_type": "full",
+            "training_window_days": null,
+            "features_used": ["daily_return", "daily_vol_20d", "rsi_14d"],
+            "random_seed": 42
+          }
+        },
+        "training_window_days": {
+          "type": ["integer", "null"],
+          "description": "Number of calendar days used for training. null = trained on full sample (no walk-forward). If using expanding window, report the initial window size.",
+          "example": 252
+        },
+        "features_used": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "List of feature names used as inputs. Use standard names from the data dictionary below.",
+          "example": ["daily_return", "daily_vol_20d", "rsi_14d"]
+        },
+        "generated_at": {
+          "type": "string",
+          "format": "ISO 8601 datetime",
+          "description": "Timestamp when this output was generated.",
+          "example": "2026-05-09T12:30:00Z"
+        },
+        "output_spec_version": {
+          "type": "string",
+          "description": "Version of this spec that the output conforms to.",
+          "const": "1.0"
+        }
+      }
+    }
+  },
+
+  "feature_name_dictionary": {
+    "description": "Standard feature names for the features_used field. Use these exact names to ensure interoperability.",
+    "price_features": [
+      "daily_return",
+      "log_return",
+      "cumulative_return_5d",
+      "cumulative_return_20d",
+      "cumulative_return_60d"
+    ],
+    "volatility_features": [
+      "daily_vol_5d",
+      "daily_vol_20d",
+      "daily_vol_60d",
+      "high_low_range",
+      "parkinson_vol_20d"
+    ],
+    "momentum_features": [
+      "rsi_14d",
+      "macd",
+      "macd_signal",
+      "sma_50_200_ratio",
+      "rate_of_change_20d"
+    ],
+    "volume_features": [
+      "volume_zscore_20d",
+      "volume_ratio_20d"
+    ],
+    "market_features": [
+      "vix_level",
+      "vix_change_5d",
+      "spx_drawdown_252d",
+      "advance_decline_ratio"
+    ]
+  },
+
+  "evaluation_window": {
+    "start_date": "2021-05-10",
+    "end_date": "2026-05-06",
+    "description": "All implementations must produce predictions for this exact date range (matching sp500_ohlcv_5yr.parquet). The first 252 trading days (~1 year) may have null/NaN predictions if using a training window, but rows must exist."
+  },
+
+  "deliverable_checklist": {
+    "description": "Before submitting, T3 implementers must verify:",
+    "items": [
+      "File names follow {algo_name}_regimes.csv and {algo_name}_metadata.json pattern",
+      "CSV has header row with all required columns",
+      "date column is sorted ascending with no gaps",
+      "predicted_regime values are 0-indexed contiguous integers",
+      "transition_flag is 1 on the day regime changes, 0 otherwise",
+      "First row has transition_flag=0",
+      "confidence values are in [0.0, 1.0]",
+      "num_regimes in metadata matches max(predicted_regime)+1",
+      "metadata JSON is valid and contains all required fields",
+      "No NaN values in required columns (use -1 or 999 for missing, documented in metadata)",
+      "Files are UTF-8 encoded",
+      "Output directory: evaluation-plan/outputs/{algo_name}/"
+    ]
+  },
+
+  "example_csv_header": "date,predicted_regime,confidence,transition_flag,regime_label",
+  "example_csv_row": "2023-06-15,1,0.8732,0,bull",
+  "example_metadata": {
+    "algorithm": "hmm_gaussian_2state",
+    "algorithm_full_name": "2-State Gaussian Hidden Markov Model",
+    "algorithm_family": "hmm",
+    "paper_reference": null,
+    "num_regimes": 2,
+    "regime_labels_map": {"0": "bear", "1": "bull"},
+    "parameters": {
+      "n_states": 2,
+      "covariance_type": "full",
+      "training_window_days": 504,
+      "features_used": ["daily_return", "daily_vol_20d"],
+      "random_seed": 42
+    },
+    "training_window_days": 504,
+    "features_used": ["daily_return", "daily_vol_20d"],
+    "generated_at": "2026-05-09T12:30:00Z",
+    "output_spec_version": "1.0"
+  }
+}

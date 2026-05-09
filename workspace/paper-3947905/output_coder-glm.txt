@@ -1,0 +1,62 @@
+======================================================================
+NON-PARAMETRIC ONLINE MARKET REGIME DETECTION
+Implementation of arXiv:2306.15835 (Horvath & Issa, 2023)
+======================================================================
+
+Loaded 3522 days of S&P 500 data
+Data source: S&P 500 (Yahoo Finance)
+Path shape: (3522, 2)
+
+--------------------------------------------------
+Running regime detection...
+--------------------------------------------------
+Computing MMD scores for 345 ensembles...
+  Progress: 0/345
+  Progress: 50/345
+  Progress: 100/345
+  Progress: 150/345
+  Progress: 200/345
+  Progress: 250/345
+  Progress: 300/345
+
+=====================RESULTS======================
+  Number of sub-paths: 352
+  Number of ensembles: 345
+  Regime changes detected: 25
+
+Detected regime change points:
+  Ensemble 10: path indices [100, 180]
+    Approximate date: 2010-09-21 00:00:00
+  Ensemble 11: path indices [110, 190]
+    Approximate date: 2010-10-05 00:00:00
+  Ensemble 33: path indices [330, 410]
+    Approximate date: 2011-08-18 00:00:00
+  Ensemble 34: path indices [340, 420]
+    Approximate date: 2011-09-01 00:00:00
+  Ensemble 48: path indices [480, 560]
+    Approximate date: 2012-03-23 00:00:00
+  Ensemble 53: path indices [530, 610]
+    Approximate date: 2012-06-05 00:00:00
+  Ensemble 113: path indices [1130, 1210]
+    Approximate date: 2014-10-23 00:00:00
+  Ensemble 134: path indices [1340, 1420]
+    Approximate date: 2015-08-25 00:00:00
+  Ensemble 135: path indices [1350, 1430]
+    Approximate date: 2015-09-09 00:00:00
+  Ensemble 155: path indices [1550, 1630]
+    Approximate date: 2016-06-24 00:00:00
+
+====================STATISTICS====================
+  MMD scores - Mean: 0.001435
+  MMD scores - Std:  0.007051
+  MMD scores - Max:  0.078308
+  Detection rate: 7.2%
+
+======================================================================
+REGIME DETECTION COMPLETED SUCCESSFULLY
+======================================================================
+
+Key detected periods of market stress:
+  2010-05: European Debt Crisis
+  2018-12: US Government Shutdown
+  2020-03: COVID-19 Market Crash

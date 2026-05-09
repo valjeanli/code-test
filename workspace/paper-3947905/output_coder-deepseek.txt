@@ -1,0 +1,28 @@
+======================================================================
+REGIME DETECTION via SIGNATURE MMD (Auto-Evaluator)
+Paper: Horvath & Issa 2023, arXiv:2306.15835
+======================================================================
+Config: h1=21, h2=12, sig_level=2
+MMD: rbf kernel, σ=1.0
+Auto-evaluator: L=[4, 8, 12], α=0.95, prior=200
+
+1. Loading S&P 500 data...
+   Loaded 5031 trading days: 2006-01-03 to 2025-12-31
+
+2. Computing log returns and path transformations...
+   Path shape: (5031, 2) (T=5031, d=2)
+
+3. Extracting sub-paths and forming ensembles...
+   Sub-paths: 5011 (length h1=21)
+   Ensembles:  5000 (size h2=12)
+
+4. Computing truncated path signatures...
+   Signature dimension: 7 (level=2, d=2)
+
+5. Running auto-evaluator for regime change detection...
+   Valid scores: 4988/5000
+   Regime changes detected: 3896
+   Score statistics: mean=0.076960, std=0.089973
+   Score range: [-0.068009, 0.471596]
+
+6. Clustering regimes via agglomerative clustering...
